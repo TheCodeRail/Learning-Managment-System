@@ -29,7 +29,7 @@ const AdminNavbar = () => {
               className="flex items-center text-xl font-semibold"
               to="/dashboard"
             >
-              <PackageIcon className="w-8 h-8" />
+              {/* <PackageIcon className="w-8 h-8" /> */}
               <span className="pl-3">CodeRail</span>
             </Link>
             <nav className="hidden md:flex gap-4"></nav>

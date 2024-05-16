@@ -7,9 +7,12 @@ const Navbar = () => {
     <nav className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
       <div className="w-full max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-14 items-center">
-          <Link className="flex items-center text-xl font-semibold" to="/">
-            <PackageIcon className="w-8 h-8" />
-            <span className="pl-3">CodeRail</span>
+          <Link className="flex items-center" to="/">
+            <img
+              src="./CodeRail.png"
+              alt="CodeRail Logo"
+              className="w-24 h-auto mt-4"
+            />
           </Link>
           <nav className="hidden md:flex gap-4"></nav>
           <div className="flex items-center gap-4">
