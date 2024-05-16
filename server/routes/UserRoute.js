@@ -7,7 +7,6 @@ const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
-
 //signUp
 router.post("/signUp", async function (req, res) {
   try {
@@ -25,7 +24,7 @@ router.post("/signUp", async function (req, res) {
       password: hashedPassword,
       username: username,
     });
-    const link = `http://localhost:8080/user/verify/${response._id}`;
+    const link = `${process.env.BACKEND_URL}/user/verify/${response._id}`;
     const sentEmail = response.email;
     await verifyEmail(sentEmail, link);
     res.status(200).json({

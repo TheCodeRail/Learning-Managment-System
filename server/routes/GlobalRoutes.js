@@ -6,7 +6,6 @@ const { User } = require("../db");
 const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config();
-
 router.post("/forgotPassword", async function (req, res) {
   try {
     const email = req.body.email;
@@ -16,7 +15,7 @@ router.post("/forgotPassword", async function (req, res) {
         .status(403)
         .json({ msg: "No Such Email is present in Our database" });
     }
-    const link = `http://localhost:5173/resetPassword/${user._id}`;
+    const link = `${process.env.CLIENT_URL}/resetPassword/${user._id}`;
     await resetPasswordLink(email, link);
     res.status(200).json({ msg: "Please check your mail" });
   } catch (error) {
