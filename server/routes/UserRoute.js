@@ -24,7 +24,7 @@ router.post("/signUp", async function (req, res) {
       password: hashedPassword,
       username: username,
     });
-    const link = `${process.env.BACKEND_URL}/user/verify/${response._id}`;
+    const link = `${process.env.CLIENT_URL}/verified/${response._id}`;
     const sentEmail = response.email;
     await verifyEmail(sentEmail, link);
     res.status(200).json({

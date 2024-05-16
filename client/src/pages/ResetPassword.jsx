@@ -42,7 +42,7 @@ const ResetPassword = () => {
               Reset Password
             </h2>
             <p>A change password link will be sent to your mail</p>
-            <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5" action="#">
+            <form class="mt-4 space-y-4 lg:mt-5 md:space-y-5">
               <div>
                 <label
                   for="password"

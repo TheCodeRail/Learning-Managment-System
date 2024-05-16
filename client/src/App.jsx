@@ -17,6 +17,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import ShowAllUsers from "./pages/ShowAllUsers";
+import EmailVerified from "./pages/EmailVerified";
 
 const App = () => {
   return (
@@ -86,6 +87,7 @@ const App = () => {
             }
           />
           <Route path="/resetPassword/:id" element={<ResetPassword />} />
+          <Route path="/verified/:id" element={<EmailVerified />} />
         </Routes>
       </UserProvider>
     </>
