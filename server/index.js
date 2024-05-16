@@ -11,11 +11,11 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", function (req, res) {
-  res.status(200).json({
-    msg: "Ok",
-  });
-});
+// app.get("/", function (req, res) {
+//   res.status(200).json({
+//     msg: "Ok",
+//   });
+// });
 
 //routes
 app.use("/user", userRoute);
