@@ -18,6 +18,7 @@ import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import ShowAllUsers from "./pages/ShowAllUsers";
 import EmailVerified from "./pages/EmailVerified";
+import AdminProtectedRoute from "./protectedRoutes/AdminProtectedRoute";
 
 const App = () => {
   return (
@@ -41,17 +42,17 @@ const App = () => {
           <Route
             path="/admin/addWeek"
             element={
-              <ProtectedRoute>
+              <AdminProtectedRoute>
                 <AddWeek />
-              </ProtectedRoute>
+              </AdminProtectedRoute>
             }
           />
           <Route
             path="/admin/deleteWeek"
             element={
-              <ProtectedRoute>
+              <AdminProtectedRoute>
                 <DeleteWeek />
-              </ProtectedRoute>
+              </AdminProtectedRoute>
             }
           />
           <Route
@@ -81,9 +82,9 @@ const App = () => {
           <Route
             path="/admin/ShowAllUsers"
             element={
-              <ProtectedRoute>
+              <AdminProtectedRoute>
                 <ShowAllUsers />
-              </ProtectedRoute>
+              </AdminProtectedRoute>
             }
           />
           <Route path="/resetPassword/:id" element={<ResetPassword />} />
