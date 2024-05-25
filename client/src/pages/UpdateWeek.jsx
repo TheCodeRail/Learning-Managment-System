@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AdminNavbar from "@/webcomponents/AdminNavbar";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { message } from "antd";
-const AddWeek = () => {
+
+const UpdateWeek = () => {
   const [weekName, setWeekName] = useState("");
   const [assignment, setAssignment] = useState("");
   const [recording, setRecording] = useState("");
   const [lecture, setLecture] = useState("");
   const navigate = useNavigate();
-
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!weekName || !assignment || !recording || !lecture) {
-      return message.error("Please Fill All The Feilds");
+    if (!weekName) {
+      return message.error("Week Name is Mandatory");
     }
-    let recordingLinks;
-    if (recording.includes(",")) {
-      recordingLinks = recording
-        .split(",")
-        .map((link) => link.trim())
-        .filter((link) => link !== "");
-    } else {
-      recordingLinks = recording.trim();
-    }
+    const recordingLinks = recording.trim();
     try {
       const res = await axios.post(
-        `${import.meta.env.VITE_APP_ENDPOINT}/admin/addweek`,
+        `${import.meta.env.VITE_APP_ENDPOINT}/admin/updateWeek`,
         {
           weekname: weekName,
           assignment: assignment,
@@ -48,7 +40,7 @@ const AddWeek = () => {
         <section class="bg-white dark:bg-gray-900">
           <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
             <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-              Add a new Week
+              Update the Week
             </h2>
             <form>
               <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
@@ -64,7 +56,7 @@ const AddWeek = () => {
                     name="name"
                     onChange={(e) => setWeekName(e.target.value)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    required=""
+                    required
                     placeholder="Week 1"
                   />
                 </div>
@@ -73,14 +65,13 @@ const AddWeek = () => {
                     for="brand"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Video Recording Link
+                    Add Video Recording Link
                   </label>
                   <input
                     type="text"
                     name="brand"
                     onChange={(e) => setRecording(e.target.value)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                    required=""
                   />
                 </div>
                 <div class="w-full">
@@ -88,7 +79,7 @@ const AddWeek = () => {
                     for="price"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Assignment Link
+                    Add Assignment Link
                   </label>
                   <input
                     type="text"
@@ -102,7 +93,7 @@ const AddWeek = () => {
                     for="price"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
-                    Lecture Notes Link
+                    Add Lecture Notes Link
                   </label>
                   <input
                     type="text"
@@ -127,4 +118,4 @@ const AddWeek = () => {
   );
 };
 
-export default AddWeek;
+export default UpdateWeek;

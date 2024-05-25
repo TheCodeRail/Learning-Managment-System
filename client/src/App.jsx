@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 import ShowAllUsers from "./pages/ShowAllUsers";
 import EmailVerified from "./pages/EmailVerified";
 import AdminProtectedRoute from "./protectedRoutes/AdminProtectedRoute";
+import UpdateWeek from "./pages/UpdateWeek";
 
 const App = () => {
   return (
@@ -52,6 +53,14 @@ const App = () => {
             element={
               <AdminProtectedRoute>
                 <DeleteWeek />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/updateWeek"
+            element={
+              <AdminProtectedRoute>
+                <UpdateWeek />
               </AdminProtectedRoute>
             }
           />

@@ -48,4 +48,43 @@ router.post("/deleteWeek", async function (req, res) {
     res.status(500).json({ msg: "Something went wrong" });
   }
 });
+
+router.post("/updateWeek", async function (req, res) {
+  try {
+    const weekname = req.body.weekname;
+    const assignment = req.body.assignment;
+    const lectureNotes = req.body.lectureNotes;
+    const videoLecture = req.body.videoLecture;
+    const uppweekname = weekname.toLowerCase();
+    const isWeek = await Week.findOne({
+      weekname: uppweekname,
+    });
+    if (!isWeek) {
+      return res.status(411).json({ msg: "Week Not Found!" });
+    }
+    if (videoLecture) {
+      await Week.updateOne(
+        { _id: isWeek._id },
+        {
+          $push: { videoLecture: videoLecture },
+          assignment: assignment,
+          lectureNotes: lectureNotes,
+        }
+      );
+    } else {
+      await Week.updateOne(
+        { _id: isWeek._id },
+        {
+          assignment: assignment,
+          lectureNotes: lectureNotes,
+        }
+      );
+    }
+
+    res.status(200).json({ msg: "Updated Successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
 module.exports = router;

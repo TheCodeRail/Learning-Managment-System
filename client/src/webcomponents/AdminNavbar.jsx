@@ -58,6 +58,9 @@ const AdminNavbar = () => {
                     <Link to="/admin/deleteWeek">Delete Week</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer">
+                    <Link to="/admin/updateWeek">Update Week</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer">
                     <Link to="/admin/ShowAllUsers">Show All Users</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer">
