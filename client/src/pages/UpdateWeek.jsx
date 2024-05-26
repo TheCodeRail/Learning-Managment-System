@@ -106,7 +106,7 @@ const UpdateWeek = () => {
               <div className="mt-4">
                 <Button>
                   <button type="submit" onClick={handleSubmit}>
-                    Add Week
+                    Update Week
                   </button>
                 </Button>
               </div>

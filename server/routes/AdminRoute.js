@@ -67,8 +67,6 @@ router.post("/updateWeek", async function (req, res) {
         { _id: isWeek._id },
         {
           $push: { videoLecture: videoLecture },
-          assignment: assignment,
-          lectureNotes: lectureNotes,
         }
       );
     } else {
