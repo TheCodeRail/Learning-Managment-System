@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/hover-card";
 
 const Feedback = () => {
-  const [content, setContent] = useState("poor");
-  const [communication, setCommunication] = useState("poor");
-  const [userExperience, setUserExperience] = useState("poor");
-  const [continueCourse, setContinueCourse] = useState("yes");
+  const [content, setContent] = useState("select");
+  const [communication, setCommunication] = useState("select");
+  const [userExperience, setUserExperience] = useState("select");
+  const [continueCourse, setContinueCourse] = useState("select");
   const token = localStorage.getItem("token");
   const id = jwtDecode(token);
 
@@ -59,6 +59,7 @@ const Feedback = () => {
               onChange={(e) => setContent(e.target.value)}
               className="w-full rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
             >
+              <option value="select"> Select</option>
               <option value="poor">1 - Poor</option>
               <option value="fair">2 - Fair</option>
               <option value="good">3 - Good</option>
@@ -78,6 +79,7 @@ const Feedback = () => {
               onChange={(e) => setCommunication(e.target.value)}
               className="w-full rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
             >
+              <option value="select">Select</option>
               <option value="poor">1 - Poor</option>
               <option value="fair">2 - Fair</option>
               <option value="good">3 - Good</option>
@@ -97,6 +99,7 @@ const Feedback = () => {
               onChange={(e) => setUserExperience(e.target.value)}
               className="w-full rounded border border-gray-300 bg-white py-1 px-3 text-base leading-8 text-gray-700 outline-none transition-colors duration-200 ease-in-out focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200"
             >
+              <option value="select">Select</option>
               <option value="poor">1 - Poor</option>
               <option value="fair">2 - Fair</option>
               <option value="good">3 - Good</option>
