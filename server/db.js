@@ -87,10 +87,23 @@ const weekSchema = new mongoose.Schema({
   ],
 });
 
+const feedbackSchema = new mongoose.Schema({
+  content: String,
+  communication: String,
+  websiteexp: String,
+  continueCourse: String,
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+});
+
 const User = mongoose.model("User", userSchema);
 const Week = mongoose.model("Week", weekSchema);
+const Feedback = mongoose.model("Feedback", feedbackSchema);
 
 module.exports = {
   User,
   Week,
+  Feedback,
 };

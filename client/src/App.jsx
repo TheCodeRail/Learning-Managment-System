@@ -20,6 +20,8 @@ import ShowAllUsers from "./pages/ShowAllUsers";
 import EmailVerified from "./pages/EmailVerified";
 import AdminProtectedRoute from "./protectedRoutes/AdminProtectedRoute";
 import UpdateWeek from "./pages/UpdateWeek";
+import Feedback from "./pages/Feedback";
+import AllFeedback from "./pages/AllFeedback";
 
 const App = () => {
   return (
@@ -81,6 +83,14 @@ const App = () => {
             }
           />
           <Route
+            path="/dashboard/feedback"
+            element={
+              <ProtectedRoute>
+                <Feedback />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard/Profile"
             element={
               <ProtectedRoute>
@@ -93,6 +103,14 @@ const App = () => {
             element={
               <AdminProtectedRoute>
                 <ShowAllUsers />
+              </AdminProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/allFeedback"
+            element={
+              <AdminProtectedRoute>
+                <AllFeedback />
               </AdminProtectedRoute>
             }
           />

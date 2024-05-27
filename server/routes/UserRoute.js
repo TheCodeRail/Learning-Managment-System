@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Week } = require("../db");
+const { User, Week, Feedback } = require("../db");
 const nodemailer = require("nodemailer");
 const router = express.Router();
 const dotenv = require("dotenv");
@@ -176,6 +176,33 @@ router.post("/update", async function (req, res) {
     });
     // console.log(user);
     res.status(200).json({ msg: "User Updated Successfully", user2 });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+router.post("/feedback", async function (req, res) {
+  try {
+    const content = req.body.content;
+    const communication = req.body.communication;
+    const websiteexp = req.body.userExperience;
+    const continueCourse = req.body.continueCourse;
+    const userId = req.body.userId;
+    const feedbackExits = await Feedback.findOne({
+      userId: userId,
+    });
+    if (feedbackExits) {
+      return res.status(403).json({ msg: "Already Filled the feedback form" });
+    }
+    await Feedback.create({
+      content: content,
+      communication: communication,
+      websiteexp: websiteexp,
+      continueCourse: continueCourse,
+      userId: userId,
+    });
+    res.status(200).json({ msg: "Feedback Submitted Succesfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Something went wrong" });
