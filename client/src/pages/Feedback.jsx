@@ -14,7 +14,7 @@ const Feedback = () => {
   const [content, setContent] = useState("select");
   const [communication, setCommunication] = useState("select");
   const [userExperience, setUserExperience] = useState("select");
-  const [continueCourse, setContinueCourse] = useState("select");
+  const [continueCourse, setContinueCourse] = useState("yes");
   const token = localStorage.getItem("token");
   const id = jwtDecode(token);
 
