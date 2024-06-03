@@ -82,7 +82,7 @@ const WeekCard = ({ week }) => {
               {" "}
               <div className="flex-1 space-y-1">
                 <p className="text-sm font-semibold leading-none">
-                  <DialogTrigger>Lectur Slides Link</DialogTrigger>
+                  <DialogTrigger>Lecture Slides Link</DialogTrigger>
                 </p>
               </div>
               <DialogContent>
@@ -108,7 +108,7 @@ const WeekCard = ({ week }) => {
               {" "}
               <div className="flex-1 space-y-1">
                 <p className="text-sm font-semibold leading-none">
-                  <DialogTrigger>Video Recording</DialogTrigger>
+                  <DialogTrigger>Video Recording Links</DialogTrigger>
                 </p>
               </div>
               <DialogContent>

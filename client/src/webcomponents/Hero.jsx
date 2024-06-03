@@ -11,7 +11,7 @@ const Hero = () => {
             <h1 class=" mb-4 text-2xl font-bold tracking-tight leading-none md:text-2xl xl:text-4xl dark:text-white">
               Explore MERN Fullstack Development Cohort
             </h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <p class="max-w-2xl mb-6 font-normal text-black lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               Welcome aboard the CodingRail! 🚂 Destination: Full Stack Mastery.
               Join our full stack adventure and master the art of building
               awesome websites from frontend finesse to backend brilliance

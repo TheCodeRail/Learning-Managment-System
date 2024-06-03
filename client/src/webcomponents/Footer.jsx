@@ -7,7 +7,7 @@ const Footer = () => {
         <p class="mb-4 text-sm text-center text-black dark:text-gray-400 sm:mb-0">
           &copy; 2024{" "}
           <a href="" class="hover:underline" target="_blank">
-            ByteBloom
+            CodeRail
           </a>
           . All rights reserved.
         </p>

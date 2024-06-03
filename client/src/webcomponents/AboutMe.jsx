@@ -27,7 +27,7 @@ const AboutMe = () => {
             <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               About The Instructor
             </h2>
-            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+            <p class="mb-6 font-normal text-black md:text-lg dark:text-gray-400">
               Hi there, I'm Akshat Jain, and I'll be your instructor for this
               full stack development cohort. 🎓 Teaching isn't just a job for
               me—it's a passion. That's why I've designed this program to be
@@ -36,7 +36,7 @@ const AboutMe = () => {
               ensure you receive the personalized guidance needed to excel in
               full stack development.
             </p>
-            <p class="mb-6 font-light text-gray-500 md:text-lg dark:text-gray-400">
+            <p class="mb-6 font-normal text-black md:text-lg dark:text-gray-400">
               Think of me as your coding sensei—always ready to answer your
               questions, clarify tricky concepts, and help you build projects
               that will make your portfolio stand out. 🤓 So, future full stack

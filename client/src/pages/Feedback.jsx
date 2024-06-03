@@ -20,21 +20,22 @@ const Feedback = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        `${import.meta.env.VITE_APP_ENDPOINT}/user/feedback`,
-        {
-          content: content,
-          communication: communication,
-          userExperience: userExperience,
-          continueCourse: continueCourse,
-          userId: id._id,
-        }
-      );
-      message.success(res.data.msg);
-    } catch (error) {
-      message.error(error.response.data.msg);
-    }
+    message.error("The form is closed for the month of May.");
+    // try {
+    //   const res = await axios.post(
+    //     `${import.meta.env.VITE_APP_ENDPOINT}/user/feedback`,
+    //     {
+    //       content: content,
+    //       communication: communication,
+    //       userExperience: userExperience,
+    //       continueCourse: continueCourse,
+    //       userId: id._id,
+    //     }
+    //   );
+    //   message.success(res.data.msg);
+    // } catch (error) {
+    //   message.error(error.response.data.msg);
+    // }
   };
   return (
     <>

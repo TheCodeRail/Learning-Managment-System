@@ -9,7 +9,7 @@ const OurMoto = () => {
             <h2 class="mb-4 text-4xl tracking-tight font-bold text-gray-900 dark:text-white">
               How we are different?
             </h2>
-            <p class="mb-4">
+            <p class="mb-4 font-normal text-black">
               At our core, we're not just another full stack course - we're a
               transformative learning experience. 🌟What sets us apart? It's
               simple: we're here to guide you from beginner to full stack pro
@@ -17,7 +17,7 @@ const OurMoto = () => {
               just a face in the crowd—you're a valued member of our coding
               family. 💻
             </p>
-            <p>
+            <p className="font-normal text-black">
               But that's not all. We believe in hands-on, practical learning
               that goes beyond the basics. 🚀 From personalized attention to
               real-world projects, we're here to equip you with the skills and

@@ -11,7 +11,7 @@ const Subscription = () => {
             <h2 class="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
               Explore Our Unique Subscription Model
             </h2>
-            <p class="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">
+            <p class="mb-5 font-normal text-black sm:text-xl dark:text-gray-400">
               We Value your money and time, hence we provide the affordbable
               subscription model for the People
             </p>
@@ -22,7 +22,7 @@ const Subscription = () => {
                 <h3 class="mb-4 text-2xl font-semibold">
                   Monthly Subscription
                 </h3>
-                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                <p class="font-normal text-black sm:text-lg dark:text-gray-400">
                   Your flexible ticket to full stack development,No long-term
                   commitments, just learning freedom.
                 </p>
@@ -60,7 +60,7 @@ const Subscription = () => {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    <span>All Recording for that paid Month Available</span>
+                    <span>All Recordings for that paid Month Available</span>
                   </li>
                   <li class="flex items-center space-x-3">
                     <svg
@@ -111,7 +111,7 @@ const Subscription = () => {
                 <h3 class="mb-4 text-2xl font-semibold">
                   LifeTime Subscription
                 </h3>
-                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400">
+                <p class="font-normal text-black sm:text-lg dark:text-gray-400">
                   Mastery without limits: Forge your full stack destiny with our
                   commitment to your development.
                 </p>
@@ -151,7 +151,7 @@ const Subscription = () => {
                         clip-rule="evenodd"
                       ></path>
                     </svg>
-                    <span>All Recording Avaiblable for LifeTime</span>
+                    <span>All Recordings Avaiblable for LifeTime</span>
                   </li>
                   <li class="flex items-center space-x-3">
                     <svg
@@ -188,7 +188,7 @@ const Subscription = () => {
                     <span>
                       Doubt support:{" "}
                       <span class="font-semibold">
-                        till Duration of the Course
+                        Till Duration of the Course
                       </span>
                     </span>
                   </li>
