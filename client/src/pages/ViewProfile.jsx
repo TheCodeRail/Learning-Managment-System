@@ -26,6 +26,7 @@ const ViewProfile = () => {
   useEffect(() => {
     getUser();
   }, []);
+
   return (
     <>
       {loading ? (
@@ -48,6 +49,17 @@ const ViewProfile = () => {
               <div class="relative flex flex-col min-w-0  bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
                 <div class="px-6">
                   <div class="text-center mt-12">
+                    <div className="flex justify-center mb-5">
+                      {" "}
+                      {user.profilePic ? (
+                        <>
+                          <img src={user.profilePic} alt={user.username} />
+                        </>
+                      ) : (
+                        <>{null}</>
+                      )}
+                    </div>
+
                     <h3 class="text-xl font-semibold leading-normal  text-blueGray-700">
                       {user.username}
                     </h3>

@@ -3,12 +3,16 @@ const cors = require("cors");
 const userRoute = require("./routes/UserRoute");
 const adminRoute = require("./routes/AdminRoute");
 const globalRoute = require("./routes/GlobalRoutes");
+const bodyParser = require("body-parser");
+const path = require("path");
 require("dotenv").config();
 const port = 8080;
 
 // creating an instance of the express
 const app = express();
-app.use(express.json());
+// Body parser middleware for parsing application/json
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.get("/", function (req, res) {

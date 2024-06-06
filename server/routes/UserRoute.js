@@ -5,8 +5,13 @@ const { User, Week, Feedback } = require("../db");
 const nodemailer = require("nodemailer");
 const router = express.Router();
 const dotenv = require("dotenv");
+const path = require("path");
+const { singleUpload, multerErrorHandler } = require("../middlewares/multer");
+const { uploadImageToCloudinary } = require("../utils/cloudinary");
+
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
+
 //signUp
 router.post("/signUp", async function (req, res) {
   try {
@@ -151,36 +156,49 @@ router.post("/complete", async function (req, res) {
   }
 });
 
-router.post("/update", async function (req, res) {
-  try {
-    const username = req.body.username;
-    const age = req.body.age;
-    const number = req.body.number;
-    const link = req.body.link;
-    const gender = req.body.gender;
-    const desc = req.body.description;
-    const userId = req.body.userId;
-    const user = await User.updateOne(
-      { _id: userId },
-      {
-        username: username,
-        PhoneNumber: number,
-        age: age,
-        socialLinks: link,
-        gender: gender,
-        bio: desc,
+router.post(
+  "/update",
+  singleUpload.single("profilePic"),
+  multerErrorHandler,
+  async function (req, res) {
+    try {
+      const username = req.body.username;
+      const age = req.body.age;
+      const number = req.body.number;
+      const link = req.body.link;
+      const gender = req.body.gender;
+      const desc = req.body.description;
+      const userId = req.body.userId;
+      const file = req.file;
+      console.log(file);
+      const updateData = {};
+
+      if (username) updateData.username = username;
+      if (number) updateData.PhoneNumber = number;
+      if (age) updateData.age = age;
+      if (link) updateData.socialLinks = link;
+      if (gender) updateData.gender = gender;
+      if (desc) updateData.bio = desc;
+      // Check if a file was uploaded
+      if (file) {
+        // Upload image to Cloudinary
+        const imageUrl = await uploadImageToCloudinary(
+          file.path,
+          "profile_pics"
+        );
+        console.log(imageUrl);
+        // Add the Cloudinary image URL to the updateData object
+        updateData.profilePic = imageUrl;
       }
-    );
-    const user2 = await User.findOne({
-      _id: userId,
-    });
-    // console.log(user);
-    res.status(200).json({ msg: "User Updated Successfully", user2 });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ msg: "Something went wrong" });
+      const user = await User.updateOne({ _id: userId }, updateData);
+      // console.log(user);
+      res.status(200).json({ msg: "User Updated Successfully" });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ msg: "Something went wrong" });
+    }
   }
-});
+);
 
 router.post("/feedback", async function (req, res) {
   try {

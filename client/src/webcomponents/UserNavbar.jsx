@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,12 +15,33 @@ import {
 import { message } from "antd";
 
 const UserNavbar = () => {
+  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState({});
   const navigate = useNavigate();
   async function handleLogout() {
     localStorage.clear();
     message.success("Logout Succesfull");
     navigate("/");
   }
+  async function getUser() {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        `${import.meta.env.VITE_APP_ENDPOINT}/user/getUser`,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+      setUser(res.data.user);
+
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <>
       <nav className="fixed inset-x-0 top-0 z-50 bg-white shadow-sm dark:bg-gray-950/90">
@@ -38,7 +60,16 @@ const UserNavbar = () => {
                 <DropdownMenuTrigger>
                   {" "}
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    {user.profilePic ? (
+                      <>
+                        <AvatarImage src={user.profilePic} />
+                      </>
+                    ) : (
+                      <>
+                        <AvatarImage src="https://github.com/shadcn.png" />
+                      </>
+                    )}
+
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                 </DropdownMenuTrigger>

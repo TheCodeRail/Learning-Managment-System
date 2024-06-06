@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  profilePic: {
+    type: String,
+    required: false,
+  },
 });
 //week todo schema
 const weekSchema = new mongoose.Schema({

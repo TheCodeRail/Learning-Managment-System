@@ -14,6 +14,7 @@ const Profile = () => {
   const [gender, setGender] = useState("");
   const [link, setLink] = useState("");
   const [description, setDescription] = useState("");
+  const [profilePic, setProfilePic] = useState(null);
   async function getUser() {
     try {
       setLoading(true);
@@ -35,16 +36,24 @@ const Profile = () => {
     e.preventDefault();
     // console.log(username, gender, number, link, description, age);
     try {
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("gender", gender);
+      formData.append("description", description);
+      formData.append("age", age);
+      formData.append("link", link);
+      formData.append("number", number);
+      formData.append("userId", user._id);
+      if (profilePic) {
+        formData.append("profilePic", profilePic);
+      }
       const res = await axios.post(
         `${import.meta.env.VITE_APP_ENDPOINT}/user/update`,
+        formData,
         {
-          username: username,
-          gender: gender,
-          description: description,
-          age: age,
-          link: link,
-          number: number,
-          userId: user._id,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
         }
       );
       message.success(res.data.msg);
@@ -187,6 +196,19 @@ const Profile = () => {
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                         placeholder="Short Bio About Yourself"
                       ></textarea>
+                    </div>
+                    <div className="w-full">
+                      <label
+                        htmlFor="profilePic"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        Profile Picture
+                      </label>
+                      <input
+                        type="file"
+                        onChange={(e) => setProfilePic(e.target.files[0])}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      />
                     </div>
                   </div>
                   <div className="mt-4">
