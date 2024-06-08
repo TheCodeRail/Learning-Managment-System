@@ -1,21 +1,46 @@
+/**
+ * v0 by Vercel.
+ * @see https://v0.dev/t/QFCmxLvOaZk
+ * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
+ */
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import React from "react";
 
-const Query = () => {
+export default function Query() {
   return (
-    <>
-      <section class="bg-white dark:bg-gray-900 pt-14">
-        <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-          <div class="mr-auto place-self-center lg:col-span-7 flex">
-            <h1 class=" mb-4 text-2xl font-bold tracking-tight leading-none md:text-2xl xl:text-2xl dark:text-white">
-              Send Your Query On Our Mail:{" "}
-            </h1>
-            <span className="ml-3 pt-2">officialwork1103@gmail.com</span>
+    <div className="w-full max-w-md mx-auto space-y-6">
+      <div className="space-y-2 text-center">
+        <h2 className="text-3xl font-bold">Send Your Queries</h2>
+        <p className="text-gray-500 dark:text-gray-400">
+          Have a question or feedback? Fill out the form below and we'll get
+          back to you as soon as possible.
+        </p>
+      </div>
+      <form className="space-y-4">
+        <div className="grid grid-cols-1 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" placeholder="Enter your name" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" type="email" placeholder="Enter your email" />
           </div>
         </div>
-      </section>
-    </>
+        <div className="space-y-2">
+          <Label htmlFor="message">Message</Label>
+          <Textarea
+            id="message"
+            placeholder="Enter your message"
+            className="min-h-[120px]"
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Submit
+        </Button>
+      </form>
+    </div>
   );
-};
-
-export default Query;
+}

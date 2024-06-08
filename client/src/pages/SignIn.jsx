@@ -1,12 +1,13 @@
 import Navbar from "@/webcomponents/Navbar";
 import { Button } from "@/components/ui/button";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { message } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "@/webcomponents/Loading";
 import { UserContext } from "@/context/UserContext";
+import { Database } from "lucide-react";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -92,7 +93,7 @@ const SignIn = () => {
                     <div class="flex items-center justify-between">
                       <Link to="/forgot">Forgot password?</Link>
                     </div>
-                    <div className="ml-8">
+                    <div className="flex justify-start">
                       <Button>
                         <button
                           type="submit"
