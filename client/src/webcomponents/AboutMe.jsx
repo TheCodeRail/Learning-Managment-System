@@ -56,8 +56,8 @@ const AboutMe = () => {
                   <SheetHeader>
                     <SheetTitle>More About Akshat Jain</SheetTitle>
                     <SheetDescription>
-                      My name is Akshat Jain, currently working as a developer
-                      in a Remote Us Based Company (Plone Foundation). I am a
+                      My name is Akshat Jain, currently working as a Frontend
+                      developer in a Banglore Startup (WorkCrew AI). I am a
                       passionate software engineer with a strong foundation in
                       computer core subjects. I specialize in the MERN stack and
                       use my skills to create dynamic and efficient web

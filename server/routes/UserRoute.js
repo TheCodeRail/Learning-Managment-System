@@ -119,7 +119,12 @@ router.get("/getUser", async function (req, res) {
 
 router.get("/getAllWeeks", async function (req, res) {
   try {
-    const weeks = await Week.find({});
+    const filter = req.query.filter || "";
+    const weeks = await Week.find({
+      weekname: {
+        $regex: filter,
+      },
+    });
     res.status(200).json({ weeks });
   } catch (error) {
     console.log(error);
