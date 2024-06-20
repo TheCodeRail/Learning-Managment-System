@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  isMonthPaid: {
+    type: Boolean,
+    default: true,
+  },
   isAdmin: {
     type: Boolean,
     default: false,

@@ -7,6 +7,7 @@ import Loading from "@/webcomponents/Loading";
 import AdminDashboard from "@/webcomponents/AdminDashboard";
 import AdminNavbar from "@/webcomponents/AdminNavbar";
 import NotSubscribed from "@/webcomponents/NotSubscribed";
+import MonthPay from "./MonthPay";
 
 const UserDashboard = () => {
   const [loading, setLoading] = useState(false);
@@ -27,6 +28,7 @@ const UserDashboard = () => {
   useEffect(() => {
     getUser();
   }, []);
+  // console.log(user);
   return (
     <>
       {user.isAdmin ? (
@@ -36,10 +38,19 @@ const UserDashboard = () => {
         </>
       ) : (
         <>
-          {user.isSubscribed ? (
+          {user?.isSubscribed ? (
             <>
-              <UserNavbar />
-              <UserWeekDashboard />
+              {user?.isMonthPaid ? (
+                <>
+                  <UserNavbar />
+                  <UserWeekDashboard />
+                </>
+              ) : (
+                <>
+                  <UserNavbar />
+                  <MonthPay />
+                </>
+              )}
             </>
           ) : (
             <>

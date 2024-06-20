@@ -20,6 +20,7 @@ const Subs = () => {
   const [subscriptionType, setSubscriptionType] = useState(
     "monthly-subscription"
   );
+  console.log(subscriptionType);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [user, setUser] = useState({});
   let templateParams = {
@@ -82,7 +83,16 @@ const Subs = () => {
                 <CardTitle>Subscription Status</CardTitle>
                 <CardDescription>
                   {isSubscribed ? (
-                    <>You are on Monthly Subscription</>
+                    <>
+                      {user.isMonthPaid ? (
+                        <>You are on Monthly Subscription</>
+                      ) : (
+                        <>
+                          You are subscribed to the course but you have not paid
+                          the current month fee
+                        </>
+                      )}
+                    </>
                   ) : (
                     <>You Are Not Subscribed to the Course</>
                   )}
@@ -101,16 +111,22 @@ const Subs = () => {
               <CardContent className="space-y-2">
                 <RadioGroup
                   defaultValue="monthly-subscription"
-                  onChange={(e) => setSubscriptionType(e.target.value)}
+                  onValueChange={(value) => setSubscriptionType(value)}
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="monthly-subscription" />
+                    <RadioGroupItem
+                      value="monthly-subscription"
+                      id="monthly-subscription"
+                    />
                     <Label htmlFor="monthly-subscription">
                       Monthly Subscription
                     </Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="lifetime-subscription" />
+                    <RadioGroupItem
+                      value="lifetime-subscription"
+                      id="monthly-subscription"
+                    />
                     <Label htmlFor="lifetime-subscription">
                       LifeTime Subscription
                     </Label>
