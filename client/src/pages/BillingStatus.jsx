@@ -34,7 +34,7 @@ const BillingStatus = () => {
       );
       setRecord(res.data.record.records);
       const unpaidAmount = res.data.record.records
-        .filter((rec) => rec.status === "Not Paid")
+        .filter((rec) => rec.status !== "Paid")
         .reduce((total, rec) => total + rec.amount, 0);
 
       setTotalUnpaid(unpaidAmount);
