@@ -5,6 +5,8 @@ const adminRoute = require("./routes/AdminRoute");
 const globalRoute = require("./routes/GlobalRoutes");
 const bodyParser = require("body-parser");
 const path = require("path");
+const { Billing } = require("./db");
+
 require("dotenv").config();
 const port = 8080;
 

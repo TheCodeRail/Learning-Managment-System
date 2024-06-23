@@ -85,8 +85,11 @@ const UserNavbar = () => {
                   <DropdownMenuItem className="cursor-pointer">
                     <Link to="/dashboard/subscription">Subscription</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">
+                  {/* <DropdownMenuItem className="cursor-pointer">
                     <Link to="/dashboard/feedback">Feedback Form</Link>
+                  </DropdownMenuItem> */}
+                  <DropdownMenuItem className="cursor-pointer">
+                    <Link to="/dashboard/billing">Billing Status</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem className="cursor-pointer">
                     <Button onClick={handleLogout}>Logout</Button>

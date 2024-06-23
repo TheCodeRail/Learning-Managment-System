@@ -22,6 +22,7 @@ import AdminProtectedRoute from "./protectedRoutes/AdminProtectedRoute";
 import UpdateWeek from "./pages/UpdateWeek";
 import Feedback from "./pages/Feedback";
 import AllFeedback from "./pages/AllFeedback";
+import BillingStatus from "./pages/BillingStatus";
 
 const App = () => {
   return (
@@ -87,6 +88,14 @@ const App = () => {
             element={
               <ProtectedRoute>
                 <Feedback />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/billing"
+            element={
+              <ProtectedRoute>
+                <BillingStatus />
               </ProtectedRoute>
             }
           />

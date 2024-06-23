@@ -2,7 +2,8 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const { User, Feedback } = require("../db");
+const { User, Feedback, Billing } = require("../db");
+
 const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config();
@@ -64,6 +65,23 @@ router.get("/getAllUsers", async function (req, res) {
     res.status(500).json({ msg: "Something Went Wrong" });
   }
 });
+
+router.post("/postBillingStatus", async function (req, res) {
+  try {
+    const userId = req.body.userId;
+    const records = req.body.records;
+    await Billing.create({
+      userId: userId,
+      records: records,
+    });
+
+    res.status(200).json({ msg: "Added successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something Went Wrong" });
+  }
+});
+
 module.exports = router;
 //utils function
 const resetPasswordLink = async (email, link) => {
@@ -78,7 +96,7 @@ const resetPasswordLink = async (email, link) => {
     const mailOptions = {
       from: "officialwork1103@gmail.com",
       to: `${email}`,
-      subject: "Email Verification",
+      subject: "Reset Your Account Password",
       text: "Dear User Please Verify Your email",
       html: `
         <div>

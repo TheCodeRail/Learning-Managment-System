@@ -1,7 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { User, Week, Feedback } = require("../db");
+const { User, Week, Feedback, Billing } = require("../db");
 const nodemailer = require("nodemailer");
 const router = express.Router();
 const dotenv = require("dotenv");
@@ -226,6 +226,30 @@ router.post("/feedback", async function (req, res) {
       userId: userId,
     });
     res.status(200).json({ msg: "Feedback Submitted Succesfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
+
+router.get("/getBillingRecords", async function (req, res) {
+  try {
+    const token = req.headers.authorization;
+    if (!token) {
+      return res.status(400).json({ msg: "Token is not found" });
+    }
+    const words = token.split(" ");
+    const jwtToken = words[1];
+    const decode = jwt.verify(jwtToken, JWT_SECRET);
+    const record = await Billing.findOne({
+      userId: decode._id,
+    });
+    if (!record) {
+      return res.status(200).json({ msg: "No Billing Status was found" });
+    }
+    res.status(200).json({
+      record,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "Something went wrong" });

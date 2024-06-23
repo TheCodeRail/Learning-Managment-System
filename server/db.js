@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+
 dotenv.config();
 //connect
 mongoose.connect(`${process.env.MONGO_URL}`);
@@ -95,6 +96,7 @@ const weekSchema = new mongoose.Schema({
   ],
 });
 
+// feedback schema
 const feedbackSchema = new mongoose.Schema({
   content: String,
   communication: String,
@@ -106,12 +108,29 @@ const feedbackSchema = new mongoose.Schema({
   },
 });
 
+// billing schema
+const billingSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  records: [
+    {
+      period: String,
+      status: String,
+      amount: Number,
+    },
+  ],
+});
+
 const User = mongoose.model("User", userSchema);
 const Week = mongoose.model("Week", weekSchema);
 const Feedback = mongoose.model("Feedback", feedbackSchema);
+const Billing = mongoose.model("Billing", billingSchema);
 
 module.exports = {
   User,
   Week,
   Feedback,
+  Billing,
 };
