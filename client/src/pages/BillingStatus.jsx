@@ -25,7 +25,7 @@ const BillingStatus = () => {
   async function getRecord() {
     try {
       const res = await axios.get(
-        "http://localhost:8080/user/getBillingRecords",
+        `${import.meta.env.VITE_APP_ENDPOINT}/user/getBillingRecords`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
