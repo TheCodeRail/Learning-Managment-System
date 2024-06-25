@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
+import { googleLogout } from "@react-oauth/google";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,7 +18,8 @@ const AdminNavbar = () => {
   const navigate = useNavigate();
   async function handleLogout() {
     localStorage.clear();
-    message.success("Logout Succesfull");
+    googleLogout();
+    message.success("Logout Successfull");
     navigate("/");
   }
   return (

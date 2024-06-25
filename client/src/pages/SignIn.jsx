@@ -2,12 +2,14 @@ import Navbar from "@/webcomponents/Navbar";
 import { Button } from "@/components/ui/button";
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { useGoogleLogin } from "@react-oauth/google";
 import { message } from "antd";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "@/webcomponents/Loading";
 import { UserContext } from "@/context/UserContext";
-import { Database } from "lucide-react";
+import { useGoogleOneTapLogin } from "@react-oauth/google";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -41,6 +43,50 @@ const SignIn = () => {
       message.error(error.response.data.msg);
     }
   }
+
+  // login with sign in button
+  const login = useGoogleLogin({
+    onSuccess: async (response) => {
+      try {
+        setLoading(true);
+        const res = await axios.get(
+          "https://www.googleapis.com/oauth2/v1/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${response.access_token}`,
+            },
+          }
+        );
+
+        const res2 = await axios.post(
+          `${import.meta.env.VITE_APP_ENDPOINT}/user/googleSignIn`,
+          {
+            email: res.data.email,
+            profilePic: res.data.picture,
+          }
+        );
+
+        updateUser(res2.data.updatedUser);
+        message.success(`Welcome ${res2.data.updatedUser.username}`);
+        localStorage.setItem("token", res2.data.token);
+        setLoading(false);
+        navigate("/dashboard");
+      } catch (error) {
+        setLoading(false);
+        message.error(error.response.data.msg);
+      }
+    },
+  });
+  // login with one tab
+  // useGoogleOneTapLogin({
+  //   onSuccess: (credentialResponse) => {
+  //     console.log(credentialResponse);
+  //   },
+  //   onError: () => {
+  //     console.log("Login Failed");
+  //   },
+  // });
+
   return (
     <>
       <Navbar />
@@ -93,11 +139,11 @@ const SignIn = () => {
                     <div class="flex items-center justify-between">
                       <Link to="/forgot">Forgot password?</Link>
                     </div>
-                    <div className="flex justify-start">
+                    <div className="flex justify-start w-full">
                       <Button>
                         <button
                           type="submit"
-                          className="w-44"
+                          className="w-56 md:w-80"
                           onClick={handleSubmit}
                         >
                           Sign in
@@ -115,6 +161,18 @@ const SignIn = () => {
                       </Link>
                     </p>
                   </form>
+                  <div className="flex items-center justify-center my-4">
+                    <div className="border-t border-gray-300 flex-grow"></div>
+                    <span className="mx-4 text-gray-500">or</span>
+                    <div className="border-t border-gray-300 flex-grow"></div>
+                  </div>
+                  <button
+                    onClick={() => login()}
+                    className="flex items-center justify-center w-full py-2 border border-white rounded-lg text-white bg-black hover:bg-gray-700"
+                  >
+                    <FcGoogle className="mr-2" size={20} />
+                    Continue with Google
+                  </button>
                 </div>
               </div>
             </div>

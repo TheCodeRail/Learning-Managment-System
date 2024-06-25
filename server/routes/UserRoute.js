@@ -255,6 +255,34 @@ router.get("/getBillingRecords", async function (req, res) {
     res.status(500).json({ msg: "Something went wrong" });
   }
 });
+
+// google sign in
+router.post("/googleSignIn", async function (req, res) {
+  try {
+    const email = req.body.email;
+    const pic = req.body.profilePic;
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(400).json({ msg: "User Not Found! Plz Sign Up" });
+    }
+    if (!user.isVerified) {
+      return res
+        .status(403)
+        .json({ msg: "You are not verified! Please Check Your mail" });
+    }
+    const updatedUser = await User.findOneAndUpdate(
+      { email: email },
+      {
+        profilePic: pic,
+      }
+    );
+    const token = jwt.sign({ _id: user._id }, JWT_SECRET);
+    res.status(200).json({ updatedUser, token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msg: "Something went wrong" });
+  }
+});
 module.exports = router;
 
 //utils function
