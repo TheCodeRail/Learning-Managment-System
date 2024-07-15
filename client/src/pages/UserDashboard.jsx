@@ -14,6 +14,7 @@ const UserDashboard = () => {
   const [user, setUser] = useState({});
   async function getUser() {
     try {
+      setLoading(true);
       const res = await axios.get(
         `${import.meta.env.VITE_APP_ENDPOINT}/user/getUser`,
         {
@@ -21,8 +22,10 @@ const UserDashboard = () => {
         }
       );
       setUser(res.data.user);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   }
   useEffect(() => {
@@ -31,31 +34,39 @@ const UserDashboard = () => {
   // console.log(user);
   return (
     <>
-      {user.isAdmin ? (
+      {loading ? (
         <>
-          <AdminNavbar />
-          <AdminDashboard />
+          <Loading />
         </>
       ) : (
         <>
-          {user?.isSubscribed ? (
+          {user.isAdmin ? (
             <>
-              {user?.isMonthPaid ? (
+              <AdminNavbar />
+              <AdminDashboard />
+            </>
+          ) : (
+            <>
+              {user?.isSubscribed ? (
                 <>
-                  <UserNavbar />
-                  <UserWeekDashboard />
+                  {user?.isMonthPaid ? (
+                    <>
+                      <UserNavbar />
+                      <UserWeekDashboard />
+                    </>
+                  ) : (
+                    <>
+                      <UserNavbar />
+                      <MonthPay />
+                    </>
+                  )}
                 </>
               ) : (
                 <>
                   <UserNavbar />
-                  <MonthPay />
+                  <NotSubscribed />
                 </>
               )}
-            </>
-          ) : (
-            <>
-              <UserNavbar />
-              <NotSubscribed />
             </>
           )}
         </>
