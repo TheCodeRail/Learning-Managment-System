@@ -3,7 +3,19 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 //connect
-mongoose.connect(`${process.env.MONGO_URL}`);
+async function connectDB() {
+  try {
+    const connectionInstance = await mongoose.connect(
+      `${process.env.MONGO_URL}`
+    );
+    console.log(
+      ` MongoDb Connected!! DB HOST :${connectionInstance.connection.host}`
+    );
+  } catch (error) {
+    console.log(error);
+  }
+}
+connectDB();
 
 //creating user schema
 const userSchema = new mongoose.Schema({
