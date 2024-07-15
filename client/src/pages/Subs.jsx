@@ -131,6 +131,15 @@ const Subs = () => {
                       LifeTime Subscription
                     </Label>
                   </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="cancel-subscription"
+                      id="monthly-subscription"
+                    />
+                    <Label htmlFor="lifetime-subscription">
+                      Cancel Subscription
+                    </Label>
+                  </div>
                   {/* <div className="flex items-center space-x-2">
                     <RadioGroupItem value="option-three" />
                     <Label htmlFor="option-two">Cancel Subscription</Label>
